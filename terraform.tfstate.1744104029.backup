@@ -1,0 +1,675 @@
+{
+  "version": 4,
+  "terraform_version": "1.11.3",
+  "serial": 201,
+  "lineage": "b6b051d7-3a2f-0b8c-a983-183d4a627587",
+  "outputs": {
+    "linux_vm_private_ip": {
+      "value": "10.0.1.4",
+      "type": "string"
+    },
+    "linux_vm_public_ip": {
+      "value": "20.2.196.188",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "data",
+      "type": "azurerm_client_config",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "client_id": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+            "id": "Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9NmQ1YmNhNWYtYWY5My00Njk2LWIxOGUtNTU4NGM3ZDJlOThlO3N1YnNjcmlwdGlvbklkPTg5NGIzZGU4LWM3NGEtNDc1OS05NjM5LWViYWFlMTVkMmE0ODt0ZW5hbnRJZD1mMTIyN2VhYi1lMmNmLTRjNjYtYTkxMC1iOGMzYjVkYjM0YTg=",
+            "object_id": "6d5bca5f-af93-4696-b18e-5584c7d2e98e",
+            "subscription_id": "894b3de8-c74a-4759-9639-ebaae15d2a48",
+            "tenant_id": "f1227eab-e2cf-4c66-a910-b8c3b5db34a8",
+            "timeouts": null
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_key_vault",
+      "name": "norris-kv",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "access_policy": [],
+            "contact": [],
+            "enable_rbac_authorization": false,
+            "enabled_for_deployment": false,
+            "enabled_for_disk_encryption": false,
+            "enabled_for_template_deployment": false,
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv",
+            "location": "eastasia",
+            "name": "norris-kv",
+            "network_acls": [
+              {
+                "bypass": "AzureServices",
+                "default_action": "Allow",
+                "ip_rules": [],
+                "virtual_network_subnet_ids": []
+              }
+            ],
+            "public_network_access_enabled": true,
+            "purge_protection_enabled": false,
+            "resource_group_name": "terraform-resources",
+            "sku_name": "standard",
+            "soft_delete_retention_days": 7,
+            "tags": null,
+            "tenant_id": "f1227eab-e2cf-4c66-a910-b8c3b5db34a8",
+            "timeouts": null,
+            "vault_uri": "https://norris-kv.vault.azure.net/"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIyIn0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.data.azurerm_client_config.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_key_vault_access_policy",
+      "name": "norris-kv-policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "application_id": null,
+            "certificate_permissions": [],
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv/objectId/6d5bca5f-af93-4696-b18e-5584c7d2e98e",
+            "key_permissions": [
+              "Get",
+              "List"
+            ],
+            "key_vault_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv",
+            "object_id": "6d5bca5f-af93-4696-b18e-5584c7d2e98e",
+            "secret_permissions": [
+              "Get",
+              "List",
+              "Set",
+              "Delete",
+              "Backup",
+              "Restore"
+            ],
+            "storage_permissions": [],
+            "tenant_id": "f1227eab-e2cf-4c66-a910-b8c3b5db34a8",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_key_vault.norris-kv",
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.data.azurerm_client_config.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_key_vault_secret",
+      "name": "ssh_private_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content_type": "",
+            "expiration_date": null,
+            "id": "https://norris-kv.vault.azure.net/secrets/ssh-private-key/d35bdaf8c6b442b59d659519891e3c4f",
+            "key_vault_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv",
+            "name": "ssh-private-key",
+            "not_before_date": null,
+            "resource_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv/secrets/ssh-private-key/versions/d35bdaf8c6b442b59d659519891e3c4f",
+            "resource_versionless_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv/secrets/ssh-private-key",
+            "tags": null,
+            "timeouts": null,
+            "value": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+            "version": "d35bdaf8c6b442b59d659519891e3c4f",
+            "versionless_id": "https://norris-kv.vault.azure.net/secrets/ssh-private-key"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "value"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.linux_vm.azurerm_key_vault.norris-kv",
+            "module.linux_vm.azurerm_key_vault_access_policy.norris-kv-policy",
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.data.azurerm_client_config.current",
+            "module.linux_vm.tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_key_vault_secret",
+      "name": "ssh_public_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content_type": "",
+            "expiration_date": null,
+            "id": "https://norris-kv.vault.azure.net/secrets/ssh-public-key/6162209c725643f981e4127c4585511f",
+            "key_vault_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv",
+            "name": "ssh-public-key",
+            "not_before_date": null,
+            "resource_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv/secrets/ssh-public-key/versions/6162209c725643f981e4127c4585511f",
+            "resource_versionless_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.KeyVault/vaults/norris-kv/secrets/ssh-public-key",
+            "tags": null,
+            "timeouts": null,
+            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTDl3wnWnRdObOaMSkP3SfVeVojhOyjf7m9zhudIMPsxxwh95JP+zZAamJElT18+jigyK+hrMQeZj0dYQyjis47Ic+AYdIJjgp1iVOLqhQ4Ye1H3AS1nGAYCWp1QZiYLlZmAQLFbDkOo52fXdC4wlzY6GUISq+FLKQrAtDhicj4wSLsw2bezd98Dnb9vwtlVh7he0P/EEAaq9QdaxohcA0i+TmYH7D02G/erPD5IlfMtLNxBKHqqe1NeuNF/CpDV1H9nFgYdftVB3qFS+qsZfZ+s/XcVNEoh6sl2BzSa76Fa/meIG9AUENWeduN+g8g6MPB010mdZK7sqcA7SxZs1+LfyxkKGCAc9vQxh4ctK8D/4ayJn5puKNH1XVw/EXv/8P3RtnkEDYT79eH3tLzDFRvDZhv196wacJ8EGX1Nycc3/cBMVKwM/hfGSx75cHmwqRWLvv0/A4LryGvbCgXtdztRZTAdDSNipkuk4eoXlEMn+GMS7NYqOeUMH7TrXuLdIEwPWIA+cXy6A6kUjz2MdMRylk1ER00OtbvdDXW0laAT+ET5sSBBT4t3uYofGvYsP0j+tGiTh6N6A14+e8wDPsNndGJFBRYpFs/PIEYZ+T8+5oOAG85sUErxl7efH+9xYMT1YeDBuzV2HYUXlyguIQWWQXrRpeoQ2Et+viDOvJBQ==\n",
+            "version": "6162209c725643f981e4127c4585511f",
+            "versionless_id": "https://norris-kv.vault.azure.net/secrets/ssh-public-key"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "value"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.linux_vm.azurerm_key_vault.norris-kv",
+            "module.linux_vm.azurerm_key_vault_access_policy.norris-kv-policy",
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.data.azurerm_client_config.current",
+            "module.linux_vm.tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_linux_virtual_machine",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "additional_capabilities": [],
+            "admin_password": null,
+            "admin_ssh_key": [
+              {
+                "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTDl3wnWnRdObOaMSkP3SfVeVojhOyjf7m9zhudIMPsxxwh95JP+zZAamJElT18+jigyK+hrMQeZj0dYQyjis47Ic+AYdIJjgp1iVOLqhQ4Ye1H3AS1nGAYCWp1QZiYLlZmAQLFbDkOo52fXdC4wlzY6GUISq+FLKQrAtDhicj4wSLsw2bezd98Dnb9vwtlVh7he0P/EEAaq9QdaxohcA0i+TmYH7D02G/erPD5IlfMtLNxBKHqqe1NeuNF/CpDV1H9nFgYdftVB3qFS+qsZfZ+s/XcVNEoh6sl2BzSa76Fa/meIG9AUENWeduN+g8g6MPB010mdZK7sqcA7SxZs1+LfyxkKGCAc9vQxh4ctK8D/4ayJn5puKNH1XVw/EXv/8P3RtnkEDYT79eH3tLzDFRvDZhv196wacJ8EGX1Nycc3/cBMVKwM/hfGSx75cHmwqRWLvv0/A4LryGvbCgXtdztRZTAdDSNipkuk4eoXlEMn+GMS7NYqOeUMH7TrXuLdIEwPWIA+cXy6A6kUjz2MdMRylk1ER00OtbvdDXW0laAT+ET5sSBBT4t3uYofGvYsP0j+tGiTh6N6A14+e8wDPsNndGJFBRYpFs/PIEYZ+T8+5oOAG85sUErxl7efH+9xYMT1YeDBuzV2HYUXlyguIQWWQXrRpeoQ2Et+viDOvJBQ==\n",
+                "username": "norris"
+              }
+            ],
+            "admin_username": "norris",
+            "allow_extension_operations": true,
+            "availability_set_id": "",
+            "boot_diagnostics": [],
+            "bypass_platform_safety_checks_on_user_schedule_enabled": false,
+            "capacity_reservation_group_id": "",
+            "computer_name": "my-vm-linux",
+            "custom_data": null,
+            "dedicated_host_group_id": "",
+            "dedicated_host_id": "",
+            "disable_password_authentication": true,
+            "disk_controller_type": "",
+            "edge_zone": "",
+            "encryption_at_host_enabled": false,
+            "eviction_policy": "",
+            "extensions_time_budget": "PT1H30M",
+            "gallery_application": [],
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Compute/virtualMachines/my-vm-linux",
+            "identity": [],
+            "license_type": "",
+            "location": "eastasia",
+            "max_bid_price": -1,
+            "name": "my-vm-linux",
+            "network_interface_ids": [
+              "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkInterfaces/my-vm-linux-nic"
+            ],
+            "os_disk": [
+              {
+                "caching": "ReadWrite",
+                "diff_disk_settings": [],
+                "disk_encryption_set_id": "",
+                "disk_size_gb": 30,
+                "name": "myosdisk1",
+                "secure_vm_disk_encryption_set_id": "",
+                "security_encryption_type": "",
+                "storage_account_type": "Standard_LRS",
+                "write_accelerator_enabled": false
+              }
+            ],
+            "os_image_notification": [],
+            "patch_assessment_mode": "ImageDefault",
+            "patch_mode": "ImageDefault",
+            "plan": [],
+            "platform_fault_domain": -1,
+            "priority": "Regular",
+            "private_ip_address": "10.0.1.4",
+            "private_ip_addresses": [
+              "10.0.1.4"
+            ],
+            "provision_vm_agent": true,
+            "proximity_placement_group_id": "",
+            "public_ip_address": "20.2.196.188",
+            "public_ip_addresses": [
+              "20.2.196.188"
+            ],
+            "reboot_setting": "",
+            "resource_group_name": "terraform-resources",
+            "secret": [],
+            "secure_boot_enabled": false,
+            "size": "Standard_D2s_v3",
+            "source_image_id": "",
+            "source_image_reference": [
+              {
+                "offer": "0001-com-ubuntu-server-jammy",
+                "publisher": "Canonical",
+                "sku": "22_04-lts",
+                "version": "latest"
+              }
+            ],
+            "tags": null,
+            "termination_notification": null,
+            "timeouts": null,
+            "user_data": "",
+            "virtual_machine_id": "9d9c5fa7-96c9-4e46-847f-9ccaabe3d585",
+            "virtual_machine_scale_set_id": "",
+            "vm_agent_platform_updates_enabled": false,
+            "vtpm_enabled": false,
+            "zone": ""
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "admin_password"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "custom_data"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNzAwMDAwMDAwMDAwLCJkZWxldGUiOjI3MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoyNzAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_key_vault.norris-kv",
+            "module.linux_vm.azurerm_key_vault_access_policy.norris-kv-policy",
+            "module.linux_vm.azurerm_key_vault_secret.ssh_public_key",
+            "module.linux_vm.azurerm_network_interface.this",
+            "module.linux_vm.azurerm_public_ip.this",
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.azurerm_subnet.this",
+            "module.linux_vm.azurerm_virtual_network.this",
+            "module.linux_vm.data.azurerm_client_config.current",
+            "module.linux_vm.tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_network_interface",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "accelerated_networking_enabled": false,
+            "applied_dns_servers": [],
+            "auxiliary_mode": "",
+            "auxiliary_sku": "",
+            "dns_servers": null,
+            "edge_zone": "",
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkInterfaces/my-vm-linux-nic",
+            "internal_dns_name_label": "",
+            "internal_domain_name_suffix": "eznm20tvxqjebll1xnkppitdvd.hx.internal.cloudapp.net",
+            "ip_configuration": [
+              {
+                "gateway_load_balancer_frontend_ip_configuration_id": "",
+                "name": "internal",
+                "primary": true,
+                "private_ip_address": "10.0.1.4",
+                "private_ip_address_allocation": "Dynamic",
+                "private_ip_address_version": "IPv4",
+                "public_ip_address_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/publicIPAddresses/my-vm-linux-pip",
+                "subnet_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/virtualNetworks/my-vm-linux-vnet/subnets/my-vm-linux-subnet"
+              }
+            ],
+            "ip_forwarding_enabled": false,
+            "location": "eastasia",
+            "mac_address": "",
+            "name": "my-vm-linux-nic",
+            "private_ip_address": "10.0.1.4",
+            "private_ip_addresses": [
+              "10.0.1.4"
+            ],
+            "resource_group_name": "terraform-resources",
+            "tags": null,
+            "timeouts": null,
+            "virtual_machine_id": ""
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_public_ip.this",
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.azurerm_subnet.this",
+            "module.linux_vm.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_network_interface_security_group_association",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkInterfaces/my-vm-linux-nic|/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkSecurityGroups/my-vm-linux-nsg",
+            "network_interface_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkInterfaces/my-vm-linux-nic",
+            "network_security_group_id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkSecurityGroups/my-vm-linux-nsg",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.linux_vm.azurerm_network_interface.this",
+            "module.linux_vm.azurerm_network_security_group.this",
+            "module.linux_vm.azurerm_public_ip.this",
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.azurerm_subnet.this",
+            "module.linux_vm.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/networkSecurityGroups/my-vm-linux-nsg",
+            "location": "eastasia",
+            "name": "my-vm-linux-nsg",
+            "resource_group_name": "terraform-resources",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "22",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "Allow-SSH",
+                "priority": 1000,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "80",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "AllowHTTP",
+                "priority": 1002,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_public_ip",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "allocation_method": "Static",
+            "ddos_protection_mode": "VirtualNetworkInherited",
+            "ddos_protection_plan_id": null,
+            "domain_name_label": null,
+            "edge_zone": "",
+            "fqdn": null,
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/publicIPAddresses/my-vm-linux-pip",
+            "idle_timeout_in_minutes": 4,
+            "ip_address": "20.2.196.188",
+            "ip_tags": null,
+            "ip_version": "IPv4",
+            "location": "eastasia",
+            "name": "my-vm-linux-pip",
+            "public_ip_prefix_id": null,
+            "resource_group_name": "terraform-resources",
+            "reverse_fqdn": null,
+            "sku": "Standard",
+            "sku_tier": "Regional",
+            "tags": null,
+            "timeouts": null,
+            "zones": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources",
+            "location": "eastasia",
+            "managed_by": "",
+            "name": "terraform-resources",
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.1.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/virtualNetworks/my-vm-linux-vnet/subnets/my-vm-linux-subnet",
+            "name": "my-vm-linux-subnet",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "terraform-resources",
+            "service_endpoint_policy_ids": null,
+            "service_endpoints": null,
+            "timeouts": null,
+            "virtual_network_name": "my-vm-linux-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_resource_group.this",
+            "module.linux_vm.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.0.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "6ace5a26-bc75-4012-ad7b-bb54f7a263ab",
+            "id": "/subscriptions/894b3de8-c74a-4759-9639-ebaae15d2a48/resourceGroups/terraform-resources/providers/Microsoft.Network/virtualNetworks/my-vm-linux-vnet",
+            "location": "eastasia",
+            "name": "my-vm-linux-vnet",
+            "resource_group_name": "terraform-resources",
+            "subnet": [],
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.linux_vm.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.linux_vm[0]",
+      "mode": "managed",
+      "type": "tls_private_key",
+      "name": "ssh_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tls\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "algorithm": "RSA",
+            "ecdsa_curve": "P224",
+            "id": "8ac1250899331f65ec56b4744ec486e59cce8790",
+            "private_key_openssh": "-----BEGIN OPENSSH PRIVATE KEY-----\n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\n-----END OPENSSH PRIVATE KEY-----\n",
+            "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+            "private_key_pem_pkcs8": "-----BEGIN PRIVATE KEY-----\n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\nsTOOicsD+/gNOqlWZbVyQ2sXuIrXYg==\n-----END PRIVATE KEY-----\n",
+            "public_key_fingerprint_md5": "9d:5d:2d:c0:93:ca:19:1a:72:ee:d5:e4:e5:7c:89:07",
+            "public_key_fingerprint_sha256": "SHA256:eHBkB1lLj99+byXs2etz1FjDpDbPiZfJXMMs3H0LEqw",
+            "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTDl3wnWnRdObOaMSkP3SfVeVojhOyjf7m9zhudIMPsxxwh95JP+zZAamJElT18+jigyK+hrMQeZj0dYQyjis47Ic+AYdIJjgp1iVOLqhQ4Ye1H3AS1nGAYCWp1QZiYLlZmAQLFbDkOo52fXdC4wlzY6GUISq+FLKQrAtDhicj4wSLsw2bezd98Dnb9vwtlVh7he0P/EEAaq9QdaxohcA0i+TmYH7D02G/erPD5IlfMtLNxBKHqqe1NeuNF/CpDV1H9nFgYdftVB3qFS+qsZfZ+s/XcVNEoh6sl2BzSa76Fa/meIG9AUENWeduN+g8g6MPB010mdZK7sqcA7SxZs1+LfyxkKGCAc9vQxh4ctK8D/4ayJn5puKNH1XVw/EXv/8P3RtnkEDYT79eH3tLzDFRvDZhv196wacJ8EGX1Nycc3/cBMVKwM/hfGSx75cHmwqRWLvv0/A4LryGvbCgXtdztRZTAdDSNipkuk4eoXlEMn+GMS7NYqOeUMH7TrXuLdIEwPWIA+cXy6A6kUjz2MdMRylk1ER00OtbvdDXW0laAT+ET5sSBBT4t3uYofGvYsP0j+tGiTh6N6A14+e8wDPsNndGJFBRYpFs/PIEYZ+T8+5oOAG85sUErxl7efH+9xYMT1YeDBuzV2HYUXlyguIQWWQXrRpeoQ2Et+viDOvJBQ==\n",
+            "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0w5d8J1p0XTmzmjEpD90\nn1XlaI4Tso3+5vc4bnSDD7MccIfeST/s2QGpiRJU9fPo4oMivoazEHmY9HWEMo4r\nOOyHPgGHSCY4KdYlTi6oUOGHtR9wEtZxgGAlqdUGYmC5WZgECxWw5DqOdn13QuMJ\nc2OhlCEqvhSykKwLQ4YnI+MEi7MNm3s3ffA52/b8LZVYe4XtD/xBAGqvUHWsaIXA\nNIvk5mB+w9Nhv3qzw+SJXzLSzcQSh6qntTXrjRfwqQ1dR/ZxYGHX7VQd6hUvqrGX\n2frP13FTRKIerJdgc0mu+hWv5niBvQFBDVnnbjfoPIOjDwdNdJnWSu7KnAO0sWbN\nfi38sZChggHPb0MYeHLSvA/+GsiZ+abijR9V1cPxF7//D90bZ5BA2E+/Xh97S8wx\nUbw2Yb9fesGnCfBBl9TcnHN/3ATFSsDP4Xxkse+XB5sKkVi779PwOC68hr2woF7X\nc7UWUwHQ0jYqZLpOHqF5RDJ/hjEuzWKjnlDB+0617i3SBMD1iAPnF8ugOpFI89jH\nTEcpZNREdNDrW73Q11tJWgE/hE+bEgQU+Ld7mKHxr2LD9I/rRok4ejegNePnvMAz\n7DZ3RiRQUWKRbPzyBGGfk/PuaDgBvObFBK8Ze3nx/vcWDE9WHgwbs1dh2FF5coLi\nEFlkF60aXqENhLfr4gzryQUCAwEAAQ==\n-----END PUBLIC KEY-----\n",
+            "rsa_bits": 4096
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem_pkcs8"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_openssh"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem"
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": [
+    {
+      "object_kind": "var",
+      "config_addr": "var.os_type",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.os_type",
+          "status": "pass"
+        }
+      ]
+    }
+  ]
+}
