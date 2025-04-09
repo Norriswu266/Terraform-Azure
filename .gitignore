@@ -6,3 +6,4 @@
 *.log
 .terraform.lock.hcl
 modules/windows_vm/.terraform/
+*.backup
