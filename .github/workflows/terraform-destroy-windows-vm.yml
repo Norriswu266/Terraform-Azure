@@ -1,0 +1,33 @@
+name: Terraform Destroy - Windows VM (Manual)
+
+on:
+  workflow_dispatch:  # ✅ 只能手動執行
+
+jobs:
+  destroy:
+    name: Destroy Windows VM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Destroy (Windows VM only)
+        run: |
+          terraform destroy \
+            -auto-approve \
+            -var="os_type=windows" \
+            -target=module.windows_vm
