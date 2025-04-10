@@ -23,7 +23,7 @@ data "azurerm_client_config" "current" {}
 resource "azurerm_key_vault" "norris-kv" {
   name                       = "norris-kv"
   location                   = var.location
-  resource_group_name        = azurerm_resource_group.this.name
+  resource_group_name        = var.resource_group_name
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   sku_name                   = "standard"
   soft_delete_retention_days = 7
@@ -70,13 +70,13 @@ resource "azurerm_virtual_network" "this" {
   name                = "${var.vm_name}-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
 }
 
 
 resource "azurerm_subnet" "this" {
   name                 = "${var.vm_name}-subnet"
-  resource_group_name  = azurerm_resource_group.this.name
+  resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -84,7 +84,7 @@ resource "azurerm_subnet" "this" {
 resource "azurerm_network_interface" "this" {
   name                = "${var.vm_name}-nic"
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "internal"
@@ -98,7 +98,7 @@ resource "azurerm_linux_virtual_machine" "this" {
   #count                = var.windows_vm_count
   name                  = var.vm_name
   location              = var.location
-  resource_group_name   = azurerm_resource_group.this.name
+  resource_group_name   = var.resource_group_name
   size                  = var.vm_size
   admin_username        = var.admin_username
   network_interface_ids = [azurerm_network_interface.this.id]
@@ -132,7 +132,7 @@ resource "azurerm_network_interface_security_group_association" "this" {
 resource "azurerm_network_security_group" "this" {
   name                = "${var.vm_name}-nsg"
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "Allow-SSH"
@@ -163,7 +163,7 @@ resource "azurerm_network_security_group" "this" {
 resource "azurerm_public_ip" "this" {
   name                = "${var.vm_name}-pip"
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
   allocation_method   = "Static"
   sku                 = "Standard"
 }

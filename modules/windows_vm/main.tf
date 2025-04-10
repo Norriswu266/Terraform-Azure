@@ -56,7 +56,7 @@ resource "azurerm_network_interface_security_group_association" "this" {
 resource "azurerm_network_security_group" "this" {
   name                = "${var.vm_name}-nsg"
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "AllowRDP"
@@ -89,13 +89,13 @@ resource "azurerm_virtual_network" "this" {
   name                = "${var.vm_name}-vnet"
   address_space       = var.vnet_address_space
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_subnet" "subnets" {
   for_each             = { for idx, name in var.subnet_names : name => var.subnet_prefixes[idx] }
   name                 = each.key
-  resource_group_name  = azurerm_resource_group.this.name
+  resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = [each.value]
 }
@@ -104,7 +104,7 @@ resource "azurerm_subnet" "subnets" {
 resource "azurerm_public_ip" "this" {
   name                = "${var.vm_name}-pip"
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = var.resource_group_name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
