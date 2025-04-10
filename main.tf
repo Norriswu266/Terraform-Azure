@@ -42,7 +42,7 @@ output "iis_url" {
 }
 
 output "linux_vm_public_ip" {
- value = length(module.linux_vm) > 0 ? module.linux_vm[0].public_ip : null
+  value = length(module.linux_vm) > 0 ? module.linux_vm[0].public_ip : null
 }
 
 output "linux_vm_private_ip" {
