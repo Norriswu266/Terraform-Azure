@@ -42,7 +42,7 @@ jobs:
         run: terraform plan -out=tfplan.out
 
       - name: Upload Plan Output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: tfplan
           path: tfplan.out
@@ -54,7 +54,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     environment:
-      name: production  # ✅ 手動核准環境
+      name: production
       url: https://portal.azure.com/
 
     steps:
@@ -75,11 +75,10 @@ jobs:
         run: terraform init
 
       - name: Download Plan Output
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: tfplan
           path: .
 
       - name: Terraform Apply
         run: terraform apply tfplan.out
-
