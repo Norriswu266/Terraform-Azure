@@ -21,13 +21,13 @@ resource "azurerm_resource_group" "this" {
 }
 
 resource "azurerm_key_vault" "norris-kv" {
-  name                        = "norris-kv"
-  location                    = var.location
-  resource_group_name         = azurerm_resource_group.this.name
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  sku_name                    = "standard"
+  name                       = "norris-kv"
+  location                   = var.location
+  resource_group_name        = azurerm_resource_group.this.name
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  sku_name                   = "standard"
   soft_delete_retention_days = 7
-  purge_protection_enabled = false
+  purge_protection_enabled   = false
 }
 
 # Key Vault 存取權限設定
@@ -37,7 +37,7 @@ resource "azurerm_key_vault_access_policy" "norris-kv-policy" {
   object_id    = data.azurerm_client_config.current.object_id
 
   key_permissions         = ["Get", "List"]
-  secret_permissions = ["Get", "List", "Set", "Delete", "Backup", "Restore"]
+  secret_permissions      = ["Get", "List", "Set", "Delete", "Backup", "Restore"]
   storage_permissions     = []
   certificate_permissions = []
 }
@@ -54,7 +54,7 @@ resource "azurerm_key_vault_secret" "ssh_public_key" {
   name         = "ssh-public-key"
   value        = tls_private_key.ssh_key.public_key_openssh
   key_vault_id = azurerm_key_vault.norris-kv.id
-  depends_on = [azurerm_key_vault_access_policy.norris-kv-policy]
+  depends_on   = [azurerm_key_vault_access_policy.norris-kv-policy]
 }
 
 resource "azurerm_key_vault_secret" "ssh_private_key" {
@@ -120,7 +120,7 @@ resource "azurerm_linux_virtual_machine" "this" {
   }
 
   disable_password_authentication = true
-  depends_on = [azurerm_key_vault_secret.ssh_public_key]
+  depends_on                      = [azurerm_key_vault_secret.ssh_public_key]
 
 }
 

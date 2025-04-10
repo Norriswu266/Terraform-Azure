@@ -1,14 +1,14 @@
 module "windows_vm" {
-  source     = "./modules/windows_vm"
-  count = var.os_type == "windows" ? 1 : 0
-  location = var.location
+  source              = "./modules/windows_vm"
+  count               = var.os_type == "windows" ? 1 : 0
+  location            = var.location
   resource_group_name = var.resource_group_name
 }
 
 module "linux_vm" {
-  source     = "./modules/linux_vm"
-  count = var.os_type == "linux" ? 1 : 0
-  location = var.location
+  source              = "./modules/linux_vm"
+  count               = var.os_type == "linux" ? 1 : 0
+  location            = var.location
   resource_group_name = var.resource_group_name
 }
 
@@ -31,7 +31,7 @@ output "windows_vm_private_ip" {
 
 output "iis_url" {
   value = length(module.windows_vm) > 0 ? "http://${module.windows_vm[0].public_ip}" : null
-  
+
 }
 
 # output "linux_vm_public_ip" {

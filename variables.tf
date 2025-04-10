@@ -21,7 +21,7 @@ variable "location" {
   default     = "East Asia"
 }
 
-variable "resource_group_name"{
+variable "resource_group_name" {
   type    = string
   default = "terraform-resources"
 }

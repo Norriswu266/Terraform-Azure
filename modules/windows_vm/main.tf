@@ -73,7 +73,7 @@ resource "azurerm_network_security_group" "this" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-    security_rule {
+  security_rule {
     name                       = "AllowHTTP"
     priority                   = 1001
     direction                  = "Inbound"
