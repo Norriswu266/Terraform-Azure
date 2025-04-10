@@ -7,8 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**.tf'
 
 jobs:
   plan:
@@ -41,7 +39,10 @@ jobs:
       - name: Terraform Plan (Windows VM Only - Debug)
         run: |
           export TF_LOG=DEBUG
-          terraform plan -refresh=false -target=module.windows_vm -out=tfplan.out
+          terraform plan -refresh=false \
+            -var="os_type=windows" \
+            -target=module.windows_vm \
+            -out=tfplan.out
 
       - name: Upload Plan Output
         uses: actions/upload-artifact@v4
