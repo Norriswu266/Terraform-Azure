@@ -38,8 +38,10 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan.out
+      - name: Terraform Plan (Windows VM Only - Debug)
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan -refresh=false -target=module.windows_vm -out=tfplan.out
 
       - name: Upload Plan Output
         uses: actions/upload-artifact@v4
