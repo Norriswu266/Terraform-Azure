@@ -1,16 +1,23 @@
+
+resource "azurerm_resource_group" "this" {
+  name     = "terraform-resources"
+  location = var.location
+}
+
 module "windows_vm" {
   source              = "./modules/windows_vm"
   count               = var.os_type == "windows" ? 1 : 0
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.this.name
 }
 
 module "linux_vm" {
   source              = "./modules/linux_vm"
   count               = var.os_type == "linux" ? 1 : 0
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.this.name
 }
+
 
 # module "vpn" {
 #   source              = "./modules/vpn"
@@ -34,12 +41,12 @@ output "iis_url" {
 
 }
 
-# output "linux_vm_public_ip" {
-#   value = length(module.linux_vm) > 0 ? module.linux_vm[0].public_ip : null
-# }
+output "linux_vm_public_ip" {
+ value = length(module.linux_vm) > 0 ? module.linux_vm[0].public_ip : null
+}
 
-# output "linux_vm_private_ip" {
-#   value = length(module.linux_vm) > 0 ? module.linux_vm[0].private_ip : null
-# }
+output "linux_vm_private_ip" {
+  value = length(module.linux_vm) > 0 ? module.linux_vm[0].private_ip : null
+}
 
 

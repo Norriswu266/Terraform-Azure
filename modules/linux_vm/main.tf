@@ -15,10 +15,10 @@
 # 獲取目前登入用戶資訊
 data "azurerm_client_config" "current" {}
 
-resource "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
-  location = var.location
-}
+#resource "azurerm_resource_group" "this" {
+#  name     = var.resource_group_name
+#  location = var.location
+#}
 
 resource "azurerm_key_vault" "norris-kv" {
   name                       = "norris-kv"
