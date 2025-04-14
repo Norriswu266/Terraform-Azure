@@ -127,7 +127,7 @@ resource "azurerm_linux_virtual_machine" "this" {
         - systemctl enable nginx
         - systemctl start nginx
       EOF
-        )
+  )
 
   disable_password_authentication = true
   depends_on                      = [azurerm_key_vault_secret.ssh_public_key]
