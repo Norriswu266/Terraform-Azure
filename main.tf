@@ -18,6 +18,14 @@ module "linux_vm" {
   resource_group_name = azurerm_resource_group.this.name
 }
 
+# terraform {
+#   backend "azurerm" {
+#     resource_group_name   = "tfstate-rg"
+#     storage_account_name  = "tfstateblobnorris "
+#     container_name        = "tfstatedemonorris"
+#     key                   = "${terraform.workspace}.tfstate"
+#   }
+# }
 
 # module "vpn" {
 #   source              = "./modules/vpn"

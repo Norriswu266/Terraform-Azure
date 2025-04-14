@@ -6,9 +6,7 @@
 # ssh -i id_rsa norris@23.102.235.171
 
 # 執行完第一次 terraform apply 後，建議馬上執行以下指令清理敏感資訊
-# terraform state rm "module.linux_vm[0].tls_private_key.ssh_key"
-# terraform state rm "module.linux_vm[0].azurerm_key_vault_secret.ssh_private_key"
-# terraform state rm "module.linux_vm[0].azurerm_key_vault_secret.ssh_public_key"
+# terraform state rm "module.linux_vm[0].tls_private_key.ssh_key" && terraform state rm "module.linux_vm[0].azurerm_key_vault_secret.ssh_private_key" && terraform state rm "module.linux_vm[0].azurerm_key_vault_secret.ssh_public_key"
 
 ## terraform destroy 
 
@@ -118,6 +116,18 @@ resource "azurerm_linux_virtual_machine" "this" {
     username   = var.admin_username
     public_key = tls_private_key.ssh_key.public_key_openssh
   }
+
+  custom_data = base64encode(<<EOF
+      #cloud-config
+      package_update: true
+      package_upgrade: true
+      packages:
+        - nginx
+      runcmd:
+        - systemctl enable nginx
+        - systemctl start nginx
+      EOF
+        )
 
   disable_password_authentication = true
   depends_on                      = [azurerm_key_vault_secret.ssh_public_key]
