@@ -18,22 +18,23 @@ variable "os_type" {
 variable "location" {
   description = "The Azure region to deploy resources in"
   type        = string
-  default     = "East Asia"
+  default     = "Japan East"
 }
 
 variable "resource_group_name" {
   type    = string
-  default = "terraform-resources"
+  default = "ST-SAPDR"
 }
 
-variable "public_ip_id" {
-  description = "Public IP 資源 ID"
-  default     = "20.22.11.22"
-  type        = string
-}
 
-variable "gateway_subnet_id" {
-  description = "Gateway Subnet 的 ID"
-  default     = "20.22.11.33"
-  type        = string
-}
+#variable "public_ip_id" {
+#  description = "Public IP 資源 ID"
+#  default     = "20.22.11.22"
+#  type        = string
+#}
+
+#variable "gateway_subnet_id" {
+#  description = "Gateway Subnet 的 ID"
+#  default     = "20.22.11.33"
+#  type        = string
+#}

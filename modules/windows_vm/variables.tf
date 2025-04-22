@@ -8,12 +8,12 @@ variable "resource_group_name" {
 
 variable "vm_size" {
   type    = string
-  default = "Standard_D2s_v3"
+  default = "Standard_DS12_v2"
 }
 
 variable "vm_name" {
   type    = string
-  default = "my-vm"
+  default = "SAP-DR1"
 }
 
 variable "os_type" {
@@ -24,28 +24,28 @@ variable "os_type" {
 
 variable "admin_username" {
   type    = string
-  default = "norris"
+  default = "it.infra"
 }
 
 variable "admin_password" {
   type    = string
-  default = "Microfusion@123"
+  default = "1qaz@WSX#EDC"
 }
 
 variable "vnet_address_space" {
   description = "The address space for the Virtual Network"
   type        = list(string)
-  default     = ["10.0.0.0/16"]
+  default     = ["172.33.0.0/24"]
 }
 
 variable "subnet_prefixes" {
   description = "List of subnet address prefixes"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+  default     = ["172.33.0.0/25"]
 }
 
 variable "subnet_names" {
   description = "List of subnet names"
   type        = list(string)
-  default     = ["subnet1", "subnet2"]
+  default     = ["subnet1"]
 }

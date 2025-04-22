@@ -28,25 +28,25 @@ resource "azurerm_windows_virtual_machine" "this" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    sku       = "2022-datacenter"
     version   = "latest"
   }
   provision_vm_agent = true
 }
 
-resource "azurerm_virtual_machine_extension" "iis_setup" {
-  name                 = "install-iis"
-  virtual_machine_id   = azurerm_windows_virtual_machine.this.id
-  publisher            = "Microsoft.Compute"
-  type                 = "CustomScriptExtension"
-  type_handler_version = "1.10"
+# resource "azurerm_virtual_machine_extension" "iis_setup" {
+#   name                 = "install-iis"
+#   virtual_machine_id   = azurerm_windows_virtual_machine.this.id
+#   publisher            = "Microsoft.Compute"
+#   type                 = "CustomScriptExtension"
+#   type_handler_version = "1.10"
 
-  settings = <<SETTINGS
-    {
-      "commandToExecute": "powershell.exe -Command \"Install-WindowsFeature -name Web-Server -IncludeManagementTools\""
-    }
-SETTINGS
-}
+#   settings = <<SETTINGS
+#     {
+#       "commandToExecute": "powershell.exe -Command \"Install-WindowsFeature -name Web-Server -IncludeManagementTools\""
+#     }
+# SETTINGS
+# }
 
 
 resource "azurerm_network_interface_security_group_association" "this" {
@@ -54,13 +54,13 @@ resource "azurerm_network_interface_security_group_association" "this" {
   network_security_group_id = azurerm_network_security_group.this.id
 }
 resource "azurerm_network_security_group" "this" {
-  name                = "${var.vm_name}-nsg"
+  name                = "terraform-nsg"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   security_rule {
-    name                       = "AllowRDP"
-    priority                   = 1000
+    name                       = "AllowRDPInbound"
+    priority                   = 320
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -70,13 +70,13 @@ resource "azurerm_network_security_group" "this" {
     destination_address_prefix = "*"
   }
   security_rule {
-    name                       = "AllowHTTP"
-    priority                   = 1001
+    name                       = "AllowMSSQLReplication"
+    priority                   = 340
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "80"
+    destination_port_range     = "1433"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -86,7 +86,7 @@ resource "azurerm_network_security_group" "this" {
 
 resource "azurerm_virtual_network" "this" {
   ## 這是資源群組的名稱，動態生成 ex: my-vm-vnet
-  name                = "${var.vm_name}-vnet"
+  name                = "SAPDR-DB"
   address_space       = var.vnet_address_space
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -102,7 +102,7 @@ resource "azurerm_subnet" "subnets" {
 
 
 resource "azurerm_public_ip" "this" {
-  name                = "${var.vm_name}-pip"
+  name                = "terraform-pip"
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"

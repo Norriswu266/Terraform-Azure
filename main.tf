@@ -1,6 +1,6 @@
 
 resource "azurerm_resource_group" "this" {
-  name     = "terraform-resources"
+  name     = "ST-SAPDR"
   location = var.location
 }
 
@@ -44,10 +44,10 @@ output "windows_vm_private_ip" {
   value = length(module.windows_vm) > 0 ? module.windows_vm[0].private_ip : null
 }
 
-output "iis_url" {
-  value = length(module.windows_vm) > 0 ? "http://${module.windows_vm[0].public_ip}" : null
+# output "iis_url" {
+#   value = length(module.windows_vm) > 0 ? "http://${module.windows_vm[0].public_ip}" : null
 
-}
+# }
 
 output "linux_vm_public_ip" {
   value = length(module.linux_vm) > 0 ? module.linux_vm[0].public_ip : null
