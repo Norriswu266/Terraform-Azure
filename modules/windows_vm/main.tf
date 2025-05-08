@@ -1,8 +1,20 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+    }
+  }
+}
+
+resource "azurerm_resource_group" "this" {
+  name     = var.resource_group_name
+  location = var.location
+}
 
 resource "azurerm_network_interface" "this" {
   name                = "${var.vm_name}-nic"
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.this.name
 
   ip_configuration {
     name                          = "internal"
@@ -15,7 +27,7 @@ resource "azurerm_network_interface" "this" {
 resource "azurerm_windows_virtual_machine" "this" {
   name                  = var.vm_name
   location              = var.location
-  resource_group_name   = var.resource_group_name
+  resource_group_name   = azurerm_resource_group.this.name
   size                  = var.vm_size
   admin_username        = var.admin_username
   admin_password        = var.admin_password
@@ -56,7 +68,7 @@ resource "azurerm_network_interface_security_group_association" "this" {
 resource "azurerm_network_security_group" "this" {
   name                = "terraform-nsg"
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.this.name
 
   security_rule {
     name                       = "AllowRDPInbound"
@@ -89,13 +101,13 @@ resource "azurerm_virtual_network" "this" {
   name                = "SAPDR-DB"
   address_space       = var.vnet_address_space
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.this.name
 }
 
 resource "azurerm_subnet" "subnets" {
   for_each             = { for idx, name in var.subnet_names : name => var.subnet_prefixes[idx] }
   name                 = each.key
-  resource_group_name  = var.resource_group_name
+  resource_group_name  = azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = [each.value]
 }
@@ -104,7 +116,7 @@ resource "azurerm_subnet" "subnets" {
 resource "azurerm_public_ip" "this" {
   name                = "terraform-pip"
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.this.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }

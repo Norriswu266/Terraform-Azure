@@ -19,11 +19,8 @@ module "tenant_norris" {
   providers = {
     azurerm = azurerm.tenant_norris
   }
-  tenant_name         = "tenant-norris"
   location            = "East Asia"
   resource_group_name = "tenant-norris-rg"
-  subscription_id = "894b3de8-c74a-4759-9639-ebaae15d2a48"
-  tenant_id       = "f1227eab-e2cf-4c66-a910-b8c3b5db34a8"
 }
 
 output "public_ip" {

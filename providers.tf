@@ -11,13 +11,18 @@ terraform {
 
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
+  alias = "tenant_mftest"
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
   }
-  tenant_id       = "d818c843-689e-4609-bb79-276ef9a67b5e"
-  subscription_id = "fb7a3f8c-8367-4ca9-9395-04b190543c1d"
-  # tenant_id       = "f1227eab-e2cf-4c66-a910-b8c3b5db34a8"
-  # subscription_id = "894b3de8-c74a-4759-9639-ebaae15d2a48"
+}
+
+module "tenant_mftest" {
+  source = "./modules/tenant"
+
+  providers = {
+    azurerm = azurerm.tenant_mftest
+  }
 }
