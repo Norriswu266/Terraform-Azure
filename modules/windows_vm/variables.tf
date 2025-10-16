@@ -8,12 +8,12 @@ variable "resource_group_name" {
 
 variable "vm_size" {
   type    = string
-  default = "Standard_DS12_v2"
+  default = "Standard_B2s"
 }
 
 variable "vm_name" {
   type    = string
-  default = "SAP-DR1"
+  default = "norrisTestVM"
 }
 
 variable "os_type" {
@@ -24,12 +24,12 @@ variable "os_type" {
 
 variable "admin_username" {
   type    = string
-  default = "it.infra"
+  default = "norris"
 }
 
 variable "admin_password" {
   type    = string
-  default = "1qaz@WSX#EDC"
+  default = "Microfusion@123"
 }
 
 variable "vnet_address_space" {
